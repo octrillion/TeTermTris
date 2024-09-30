@@ -1,3 +1,6 @@
+mod tetris_game;
+
+use tetris_game::Game;
 fn main() {
-    println!("Hello, world!");
+    let game = Game::default();
 }
