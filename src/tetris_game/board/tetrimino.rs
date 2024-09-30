@@ -1,18 +1,20 @@
+
 use super::position::Position;
+use super::{MAX_ROW,MAX_COLUMN};
+
 pub enum Direction{
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
+    Up,
+    Down,
+    Left,
+    Right
 }
 
 pub enum Orientation{
-    NORTH,
-    SOUTH,
-    EAST,
-    WEST,
+    North,
+    West,
+    East,
+    South
 }
-impl Orientation{}
 
 
 pub trait Tetrimino{
@@ -34,7 +36,7 @@ impl Default for O{
                 Position{row:1,column:0},
                 Position{row:1,column:1},
             ],
-            orientation:Orientation::NORTH,
+            orientation:Orientation::North,
         }
     }
 }
@@ -44,16 +46,16 @@ impl Tetrimino for O{
     }
     fn shift(&mut self,direction:Direction) -> Vec<Position>{
         let offset:Position = match direction {
-            Direction::LEFT => Position{row:-1,column:0},
-            Direction::RIGHT => Position{row:1,column:0},
-            Direction::UP => Position{row:0,column:-1},
-            Direction::DOWN => Position{row:0,column:1},
+            Direction::Left => Position{row:-1,column:0},
+            Direction::Right => Position{row:1,column:0},
+            Direction::Up => Position{row:0,column:-1},
+            Direction::Down => Position{row:0,column:1},
         };
 
         for i in 0..4{
             self.block_positions[i] += offset;
         }
-        return Vec::from(self.block_positions);
+        Vec::from(self.block_positions)
     }
     fn get_positions(&self) -> Vec<Position>{
         Vec::from(self.block_positions)
@@ -67,3 +69,21 @@ pub fn gen_tetrimino<>() -> Box<dyn Tetrimino>{
     Box::new(O::default())
 }
 
+fn turn(direction:Direction, orientation:Orientation)-> Option<Orientation>{
+    match direction{
+        Direction::Right => { match orientation{
+            Orientation::North => Some(Orientation::East),
+            Orientation::East => Some(Orientation::South),
+            Orientation::South => Some(Orientation::West),
+            Orientation::West => Some(Orientation::North),
+        }},
+        Direction::Left => { match orientation{
+            Orientation::North => Some(Orientation::West),
+            Orientation::East => Some(Orientation::North),
+            Orientation::South => Some(Orientation::East),
+            Orientation::West => Some(Orientation::South)
+        }},
+        _ => None
+
+    }
+}
