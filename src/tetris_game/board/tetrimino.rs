@@ -1,9 +1,8 @@
 
-mod pieces;
+pub(super) mod pieces;
 
 use super::position::Position;
-use super::{MAX_ROW,MAX_COLUMN};
-use pieces::{O,L,J,Z,S,I};
+use pieces::{O,L};
 
 pub enum Direction{
     Up,
@@ -11,7 +10,10 @@ pub enum Direction{
     Left,
     Right
 }
-
+pub enum Rotation{
+    Clockwise,
+    CounterClockWise,
+}
 pub enum Orientation{
     North,
     West,
@@ -33,21 +35,20 @@ pub fn gen_tetrimino<>() -> Box<dyn Tetrimino>{
     Box::new(O::default())
 }
 
-fn turn(direction:Direction, orientation:Orientation)-> Option<Orientation>{
-    match direction{
-        Direction::Right => { match orientation{
-            Orientation::North => Some(Orientation::East),
-            Orientation::East => Some(Orientation::South),
-            Orientation::South => Some(Orientation::West),
-            Orientation::West => Some(Orientation::North),
+fn turn(rotation:Rotation, orientation:Orientation)-> Orientation{
+    match rotation{
+        Rotation::Clockwise =>{ match orientation{
+            Orientation::North => Orientation::East,
+            Orientation::East =>  Orientation::South,
+            Orientation::South => Orientation::West,
+            Orientation::West =>  Orientation::North,
         }},
-        Direction::Left => { match orientation{
-            Orientation::North => Some(Orientation::West),
-            Orientation::East => Some(Orientation::North),
-            Orientation::South => Some(Orientation::East),
-            Orientation::West => Some(Orientation::South)
+        Rotation::CounterClockWise=> { match orientation{
+            Orientation::North => Orientation::West,
+            Orientation::East =>  Orientation::North,
+            Orientation::South => Orientation::East,
+            Orientation::West =>  Orientation::South
         }},
-        _ => None
 
     }
 }

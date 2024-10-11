@@ -177,6 +177,63 @@ B4 = (4,10) + (4+1,10+1) = (5,11)
    0        9
 
 
+thus to store a Tetrimino:
+
+Struct Tetrimino{
+    pivot_position:Position,
+    orientation:Orientation, // current orientation of block
+    block_table:[Position:4x4] // a flattened 2 array where (orientation,block)
+} 
+#Note Eventually wall kicks will be implemented 
+thus either block_table or new field is added
+
+impl on Tetrimino:
+    func rotate(&self,direction:RotationDirection)->[Position:4]:
+        let mut positions := self.block_table[orientation:orientation+4]
+        for position in positions:
+            position += pivot_position
+        return position
 
 
-       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

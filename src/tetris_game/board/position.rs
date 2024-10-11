@@ -1,22 +1,22 @@
-use std::ops::{Add, AddAssign, Sub};
+use std::ops::{Add, AddAssign};
 
 #[derive(Eq,PartialEq,Clone,Copy,Debug)]
 pub struct Position{
-    pub row:i64,
-    pub column:i64,
+    pub row:i8,
+    pub column:i8,
 }
 impl Add for Position{
     type Output = Self;
-    fn add(self, rhs:Self)-> Self::Output{
-        Self{
-            row: self.row + rhs.row,
-            column: self.column + rhs.column
-        }
+
+    fn add(self, rhs: Self) -> Self::Output {
+        return Self::Output{
+            row:self.row+rhs.row,
+            column:self.column + rhs.column};
     }
 }
 impl AddAssign for Position{
     fn add_assign(&mut self, rhs: Self) {
-        *self = *self + rhs;
+       *self = *self + rhs;
     }
 }
 

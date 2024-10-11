@@ -2,13 +2,11 @@ use super::Tetrimino;
 use super::Position;
 use super::Direction;
 use super::Orientation;
-use super::turn;
 
 
 
 pub struct O {
     block_positions:[Position;4],
-    orientation:Orientation,
 }
 impl Default for O{
     fn default()-> Self{
@@ -19,7 +17,6 @@ impl Default for O{
                 Position{row:1,column:5},
                 Position{row:1,column:5},
             ],
-            orientation:Orientation::North,
         }
     }
 }
@@ -47,6 +44,8 @@ impl Tetrimino for O{
     }
 }
 
-pub struct I{
-    block_orientation:[Position]
-}
+pub struct I;
+pub struct L;
+pub struct J;
+pub struct Z;
+pub struct S;
