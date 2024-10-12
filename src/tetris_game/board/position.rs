@@ -19,6 +19,8 @@ impl AddAssign for Position{
        *self = *self + rhs;
     }
 }
+impl Position{
+}
 
 
 
