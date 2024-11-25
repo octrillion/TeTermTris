@@ -1,11 +1,14 @@
-#![warn(
-    clippy::all,
-    clippy::pedantic)]
+mod view;
+mod game;
 
+use std::{thread::sleep, time::Duration};
 
-mod tetris_game;
-
-use tetris_game::Game;
-fn main() {
-    let game = Game::default();
+use crossterm::style::Print;
+use view::terminal::Terminal;
+fn main(){
+    Terminal::init().unwrap();
+    Terminal::queue(Print("Hello World!")).unwrap();
+    Terminal::flush().unwrap();
+    sleep(Duration::from_secs(2));
+    Terminal::close().unwrap();
 }
