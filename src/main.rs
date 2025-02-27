@@ -1,14 +1,11 @@
-mod view;
+mod tetris;
 mod game;
+mod view;
+use tetris::Tetris;
 
-use std::{thread::sleep, time::Duration};
 
-use crossterm::style::Print;
-use view::terminal::Terminal;
+
 fn main(){
-    Terminal::init().unwrap();
-    Terminal::queue(Print("Hello World!")).unwrap();
-    Terminal::flush().unwrap();
-    sleep(Duration::from_secs(2));
-    Terminal::close().unwrap();
+#![warn(clippy::all, clippy::pedantic)]
+    Tetris::init().unwrap().run();
 }

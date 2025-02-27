@@ -1,17 +1,20 @@
-use crate::view::View;
-pub struct Position{
-    row:usize,
-    col:usize
-}
+mod tetrimino;
+mod position;
 
-pub struct Object{
-    block_pos:[Position;4]
-}
-    
-
+use tetrimino::TetEnum;
 pub struct Game{
-    score:u16,
-    objects:Vec<Object>,
-    view:View
+    board:[u8;240],
+    points:u64,
+    bag:Vec<TetEnum>
 }
 
+
+impl Game{
+    pub fn init()-> Self{
+        Self{
+            board:[0;240],
+            points:0,
+            bag:Vec::new()
+        }
+    }
+}
