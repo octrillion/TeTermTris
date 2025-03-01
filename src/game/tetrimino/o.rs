@@ -7,7 +7,7 @@ pub struct O{
 
 
 impl Tetrimino for O {
-    fn clockwise(&mut self,board:&mut [u8]) {
+    fn clockwise(&mut self,board:&mut [u8]){
         todo!()
     }
 
@@ -31,7 +31,7 @@ impl Tetrimino for O {
         todo!()
     }
 
-    fn pieces(&self, board: &mut [u8]) {
+    fn pieces(&self) {
         todo!()
     }
 }

@@ -1,10 +1,9 @@
 mod tetrimino;
-mod position;
 
 use tetrimino::TetEnum;
 pub struct Game{
-    board:[u8;240],
-    points:u64,
+    pub board:[u8;240],
+    pub points:u64,
     bag:Vec<TetEnum>
 }
 

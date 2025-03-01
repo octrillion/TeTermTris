@@ -30,7 +30,7 @@ impl Tetrimino for S {
         todo!()
     }
 
-    fn pieces(&self, board: &mut [u8]) {
+    fn pieces(&self) {
         todo!()
     }
 }
