@@ -1,2 +1,2 @@
 # TeTermTris
-A Terminal Based Tetris Emulator
+A Terminal Based Tetris Clone written in rust
